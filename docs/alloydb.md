@@ -102,7 +102,7 @@ gcloud alloydb clusters create $CLUSTER \
 ```
 gcloud alloydb instances create $INSTANCE \
     --instance-type=PRIMARY \
-    --cpu-count=8 \
+    --cpu-count=4 \
     --region=$REGION \
     --cluster=$CLUSTER \
     --project=$PROJECT_ID \
