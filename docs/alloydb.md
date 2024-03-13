@@ -39,11 +39,19 @@ In this step, we will enable Private Services Access so that AlloyDB is able to 
 
 1. Set environment variables:
 ```
+export VPC_NAME=my-vpc
+export SUBNET_NAME=my-subnet
 export RANGE_NAME=my-allocated-range-default
 export DESCRIPTION="peering range for alloydb-service"
 ```
+2- Create VPC Network and subnet
+```
+gcloud compute networks create my-vpc --project=$PROJECT_ID --subnet-mode=custom --mtu=1460 --bgp-routing-mode=regional
 
-2. Create an allocated IP address range:
+gcloud compute networks subnets create my-subnet --project=$PROJECT_ID --range=10.0.0.0/24 --stack-type=IPV4_ONLY --network=my-vpc --region=us-central1
+```
+
+3. Create an allocated IP address range:
 ```
 gcloud compute addresses create $RANGE_NAME \
     --global \
@@ -53,7 +61,7 @@ gcloud compute addresses create $RANGE_NAME \
     --network=default
 ```
 
-3. Create a private connection:
+4. Create a private connection:
 ```
 gcloud services vpc-peerings connect \
     --service=servicenetworking.googleapis.com \
