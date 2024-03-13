@@ -93,7 +93,7 @@ export REGION=us-central1
 ```
 gcloud alloydb clusters create $CLUSTER \
     --password=$DB_PASS\
-    --network=default \
+    --network=$VPC_NAME \
     --region=$REGION \
     --project=$PROJECT_ID
 ```
