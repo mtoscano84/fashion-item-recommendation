@@ -44,14 +44,25 @@ export SUBNET_NAME=my-subnet
 export RANGE_NAME=my-allocated-range-default
 export DESCRIPTION="peering range for alloydb-service"
 ```
-2- Create VPC Network and subnet
+2- Create VPC Network and subnet:
 ```
-gcloud compute networks create my-vpc --project=$PROJECT_ID --subnet-mode=custom --mtu=1460 --bgp-routing-mode=regional
-
-gcloud compute networks subnets create my-subnet --project=$PROJECT_ID --range=10.0.0.0/24 --stack-type=IPV4_ONLY --network=my-vpc --region=us-central1
+gcloud compute networks create $VPC_NAME \
+    --project=$PROJECT_ID \
+    --subnet-mode=custom \
+    --mtu=1460 \
+    --bgp-routing-mode=regional
+```
+3- Create a subnet:
+```
+gcloud compute networks subnets create $SUBNET_NAME \
+    --project=$PROJECT_ID \
+    --range=10.0.0.0/24 \
+    --stack-type=IPV4_ONLY \
+    --network=$VPC_NAME \
+    --region=us-central1
 ```
 
-3. Create an allocated IP address range:
+4. Create an allocated IP address range:
 ```
 gcloud compute addresses create $RANGE_NAME \
     --global \
@@ -61,7 +72,7 @@ gcloud compute addresses create $RANGE_NAME \
     --network=default
 ```
 
-4. Create a private connection:
+5. Create a private connection:
 ```
 gcloud services vpc-peerings connect \
     --service=servicenetworking.googleapis.com \
