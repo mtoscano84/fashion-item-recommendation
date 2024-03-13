@@ -69,7 +69,7 @@ gcloud compute addresses create $RANGE_NAME \
     --purpose=VPC_PEERING \
     --prefix-length=16 \
     --description="$DESCRIPTION" \
-    --network=default
+    --network=$VPC_NAME
 ```
 
 5. Create a private connection:
@@ -77,7 +77,7 @@ gcloud compute addresses create $RANGE_NAME \
 gcloud services vpc-peerings connect \
     --service=servicenetworking.googleapis.com \
     --ranges="$RANGE_NAME" \
-    --network=default
+    --network=$VPC_NAME
 ```
 
 ## Create a AlloyDB cluster
