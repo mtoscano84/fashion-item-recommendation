@@ -14,7 +14,7 @@ The diagram show the architecture of the demo
 
 Deploying this demo consists of 3 steps:
 
-Setting up your Database -- creating your database and initializing it with data
+[Setting up your Database](docs/alloydb.md) -- creating your database and initializing it with data
 Deploying your service -- deploying your retrieval service and connecting it to your database
 Running the LLM-based application -- running your application locally
 
