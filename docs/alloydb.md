@@ -8,7 +8,7 @@
 export PROJECT_ID=<YOUR_PROJECT_ID>
 ```
 
-3. Install the gcloud CLI.
+3. [Install](https://cloud.google.com/sdk/docs/install) the gcloud CLI.
 
 4. Set gcloud project:
 ```
