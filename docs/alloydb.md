@@ -24,7 +24,7 @@ gcloud services enable alloydb.googleapis.com \
                        aiplatform.googleapis.com
 ```
 
-6. Install python and set up a python virtual environment.
+6. Install [python](https://cloud.google.com/python/docs/setup#installing_python) and set up a python virtual environment.
 
 7. Make sure you have python version 3.11+ installed.
 
