@@ -30,8 +30,9 @@ gcloud services enable alloydb.googleapis.com \
 
 ```
 python -V
-Download and install postgres-client cli (psql).
 ```
+
+8. Download and install [postgres-client cli (psql)](https://www.timescale.com/blog/how-to-install-psql-on-mac-ubuntu-debian-windows/)
 
 ## Enable private services access
 In this step, we will enable Private Services Access so that AlloyDB is able to connect to your VPC. You should only need to do this once per VPC (per project).
