@@ -137,7 +137,7 @@ gcloud compute instances create $VM_INSTANCE \
     --project=$PROJECT_ID \
     --zone=$ZONE \
     --machine-type=e2-medium \
-    --network-interface=network-tier=PREMIUM,stack-type=IPV4_ONLY,subnet=default \
+    --network-interface=network-tier=PREMIUM,stack-type=IPV4_ONLY,subnet=$SUBNET_NAME \
     --maintenance-policy=MIGRATE \
     --provisioning-model=STANDARD \
     --service-account=$PROJECT_NUM-compute@developer.gserviceaccount.com \
