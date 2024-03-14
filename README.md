@@ -10,6 +10,8 @@ This demo showcases a Fashion Item Recommendation based on image simalarity sear
 
 The diagram show the architecture of the demo
 
+![Architecture](images/fashion_items_recommendation_app.png)
+
 # Deploying
 
 Deploying this demo consists of 3 steps:
