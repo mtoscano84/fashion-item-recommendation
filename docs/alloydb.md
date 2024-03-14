@@ -214,23 +214,34 @@ You will need to allow this command to run while you are connecting to AlloyDB. 
 ```
 psql -h 127.0.0.1 -U postgres
 ```
-
-## Initialize data in AlloyDB
-
-1. While connected using psql, create a database and switch to it:
+9. While connected using psql, create a database and switch to it:
 ```
 CREATE DATABASE fashionstore;
 \c fashionstore
 ```
 
-2. Install pgvector extension in the database:
+10. Install pgvector extension in the database:
 ```
 CREATE EXTENSION vector;
 ```
 
-3. Exit from psql:
+11. Exit from psql:
 ```
 exit
+```
+
+## Initialize data in AlloyDB
+
+1. Set environment variables:
+```
+export PROJECT_ID=fashion-item-recommendation
+export REGION=us-central1
+export BUCKET_NAME=catalog-repo
+```
+
+2. Create a Cloud Storage Bucket
+```
+gcloud storage buckets create gs://$BUCKET_NAME --project=$PROJECT_ID --location=$REGION
 ```
 
 4. Change into the retrieval service directory:
