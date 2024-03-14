@@ -131,10 +131,10 @@ export PROJECT_NUM=$(gcloud projects describe $PROJECT_ID --format="value(projec
 export VM_INSTANCE=alloydb-proxy-vm
 ```
 
-2. Disable the following Organization Policies in order to create the VM Instance:
-Set compute.vmExternalIpAcces
+2. Disable the following Organization Policies using the console:
+Set compute.vmExternalIpAcces to Allow
 
-Set constraints/compute.requireShieldedVm
+Set constraints/compute.requireShieldedVm to Not Enforced
 
 2. Create a Compute Engine VM:
 ```
