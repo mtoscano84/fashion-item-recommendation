@@ -219,8 +219,8 @@ psql -h 127.0.0.1 -U postgres
 
 1. While connected using psql, create a database and switch to it:
 ```
-CREATE DATABASE assistantdemo;
-\c assistantdemo
+CREATE DATABASE fashionstore;
+\c fashionstore
 ```
 
 2. Install pgvector extension in the database:
