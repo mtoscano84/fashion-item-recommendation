@@ -61,8 +61,12 @@ gcloud compute networks subnets create $SUBNET_NAME \
     --network=$VPC_NAME \
     --region=us-central1
 ```
+4- Create a Firewall rule to allow SSH to the Network:
+```
+gcloud compute firewall-rules create allow-ssh-$VPC_NAME --network $VPC_NAME --allow tcp:22,tcp:3389,icmp --source-ranges 0.0.0.0
+```
 
-4. Create an allocated IP address range:
+5. Create an allocated IP address range:
 ```
 gcloud compute addresses create $RANGE_NAME \
     --global \
@@ -72,7 +76,7 @@ gcloud compute addresses create $RANGE_NAME \
     --network=$VPC_NAME
 ```
 
-5. Create a private connection:
+6. Create a private connection:
 ```
 gcloud services vpc-peerings connect \
     --service=servicenetworking.googleapis.com \
@@ -171,6 +175,7 @@ gcloud compute instances create $VM_INSTANCE \
     --reservation-affinity=any
 ```
 5. Open a new terminal, connect to the VM Instance and install AlloyDB Auth Proxy:
+
 Connect to the VM Instance:
 ```
 export PROJECT_ID=fashion-item-recommendation
