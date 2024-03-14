@@ -10,7 +10,7 @@ This demo showcases a Fashion Item Recommendation based on image simalarity sear
 
 The diagram show the architecture of the demo
 
-![Architecture](images/fashion_items_recommendation_app.png)
+![Architecture](images/fashion_item_recommendation_app.png)
 
 # Deploying
 
