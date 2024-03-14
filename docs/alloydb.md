@@ -239,14 +239,19 @@ export REGION=us-central1
 export BUCKET_NAME=catalog-repo
 ```
 
-2. Create a Cloud Storage Bucket
+2. Create a GCS Bucket
 ```
 gcloud storage buckets create gs://$BUCKET_NAME --project=$PROJECT_ID --location=$REGION
 ```
 
-4. Change into the retrieval service directory:
+3. Change into the Catalog Image Repository
 ```
-cd genai-databases-retrieval-app/retrieval_service
+cd fashion-item-recommendation/images/catalog_images
+```
+
+4. Upload the catalog images from local to the GCS Bucket
+```
+gcloud storage cp * gs://$BUCKET_NAME --project=$PROJECT_ID
 ```
 
 5. Install requirements:
