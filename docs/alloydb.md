@@ -141,7 +141,18 @@ Set **constraints/compute.requireShieldedVm** to **Not Enforced**
 
 ![Disable Org Policy compute.requireShieldedVM](../images/disable_orgpolicy_requireShieldedVm.png)
 
-2. Create a Compute Engine VM:
+3. Assign the necessary roles to the default Compute Engine Service Account:
+```
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+    --member='serviceAccount:$PROJECT_NUM-compute@developer.gserviceaccount.com' \
+    --role='roles/alloydb.client'
+
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+     --member='serviceAccount:$PROJECT_NUM-compute@developer.gserviceaccount.com' \
+     --role='roles/serviceusage.serviceUsageConsumer'
+
+```  
+4. Create a Compute Engine VM:
 ```
 gcloud compute instances create $VM_INSTANCE \
     --project=$PROJECT_ID \
@@ -159,15 +170,42 @@ gcloud compute instances create $VM_INSTANCE \
     --labels=goog-ec-src=vm_add-gcloud \
     --reservation-affinity=any
 ```
-
-3. Create an SSH tunnel through your GCE VM using port forwarding. This will listen to 127.0.0.1:5432 and forward through the GCE VM to your AlloyDB instance:
+5. Open a new terminal, connect to the VM Instance and install AlloyDB Auth Proxy:
+Connect to the VM Instance:
 ```
-gcloud compute ssh --project=$PROJECT_ID --zone=$ZONE $VM_INSTANCE \
-                   -- -NL 5432:$ALLOYDB_IP:5432
+export PROJECT_ID=fashion-item-recommendation
+export ZONE=us-central1-a
+export VM_INSTANCE=alloydb-proxy-vm
+gcloud compute ssh --project=$PROJECT_ID --zone=$ZONE $VM_INSTANCE
+```
+Install AlloyDB Auth Proxy
+```
+wget https://storage.googleapis.com/alloydb-auth-proxy/v1.7.1/alloydb-auth-proxy.linux.amd64 -O alloydb-auth-proxy
+chmod +x alloydb-auth-proxy
+```
+6. Run the AlloyDB Auth Proxy, having it listen on its default address of 127.0.0.1:
+```
+export CLUSTER=my-alloydb-cluster
+export INSTANCE=my-alloydb-instance
+export REGION=us-central1
+export PROJECT_ID=fashion-item-recommendation
+./alloydb-auth-proxy \
+  /projects/$PROJECT_ID/locations/$REGION/clusters/$CLUSTER/instances/$INSTANCE
 ```
 You will need to allow this command to run while you are connecting to AlloyDB. You may wish to open a new terminal to connect with.
 
-4. Verify you can connect to your instance with the psql tool. Enter password for AlloyDB ($DB_PASS environment variable set above) when prompted:
+7. Open a new terminal and set up port forwarding between your external client and the intermediary VM using SSH through IAP. This will listen to 127.0.0.1:5432 and forward through the GCE VM to your AlloyDB instance:
+```
+export ZONE=us-central1-a
+export VM_INSTANCE=alloydb-proxy-vm
+gcloud compute ssh $VM_INSTANCE \
+       --tunnel-through-iap \
+       --zone=$ZONE \
+       --ssh-flag="-L 5432:localhost:5432"
+```
+You will need to allow this command to run while you are connecting to AlloyDB. You may wish to open a new terminal to connect with.
+
+8. Verify you can connect to your instance with the psql tool. Enter password for AlloyDB ($DB_PASS environment variable set above) when prompted:
 ```
 psql -h 127.0.0.1 -U postgres
 ```
