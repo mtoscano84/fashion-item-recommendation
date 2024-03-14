@@ -132,9 +132,14 @@ export VM_INSTANCE=alloydb-proxy-vm
 ```
 
 2. Disable the following Organization Policies using the console:
-Set compute.vmExternalIpAcces to Allow
 
-Set constraints/compute.requireShieldedVm to Not Enforced
+Set **compute.vmExternalIpAcces** to **Allow**
+
+![Disable Org Policy compute.vmExternalIpAcces](../images/disable_orgpolicy_vmExternalIPAccess.png)
+
+Set **constraints/compute.requireShieldedVm** to **Not Enforced**
+
+![Disable Org Policy compute.requireShieldedVM](../images/disable_orgpolicy_requireShieldedVm.png)
 
 2. Create a Compute Engine VM:
 ```
