@@ -38,8 +38,10 @@ variables.read("variables.ini")
 project = variables.get("CORE","PROJECT")
 location = variables.get("CORE","LOCATION")
 catalog_repo = variables.get("CORE","CATALOG_REPO")
-location = variables.get("CORE","LOCATION")
-#seconds_per_job = variables.get("CORE","SECONDS_PER_JOB")
+db_pass = variables.get("CORE","DB_PASS")
+db_host = variables.get("CORE","DB_HOST")
+db_name = variables.get("CORE","DB_NAME")
+
 seconds_per_job=2
 blob_uri_list = []
 
@@ -95,11 +97,11 @@ def _load_embedding(image_name, image_embedding):
     # postgresql+pg8000://<db_user>:<db_pass>@<INSTANCE_HOST>:<db_port>/<db_name>
     sqlalchemy.engine.url.URL.create(
             drivername="postgresql+pg8000",
-            username="image_store",
-            password="Image_001",
-            host="127.0.0.1",
+            username="postgres",
+            password=db_pass,
+            host=db_host,
             port="5432",
-            database="image_store",
+            database=db_name,
     ),
   )
 
