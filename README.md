@@ -16,27 +16,31 @@ The diagram show the architecture of the demo
 
 Deploying this demo consists of 3 steps:
 
-[Setting up your Database](docs/alloydb.md) -- creating your database and initializing it with data
-Deploying your service -- deploying your retrieval service and connecting it to your database
-Running the LLM-based application -- running your application locally
+1. creating your database and initializing it with data
+2. Deploying your service -- deploying your recommendation service and connecting it to your database
+3. Running the Recommendation
 
-Before you begin
+## Before you begin
 Clone this repo to your local machine:
 
 git clone https://github.com/GoogleCloudPlatform/genai-databases-retrieval-app.git
-Setting up your Database
+
+## Setting up your Database
 The retrieval service uses an interchangeable 'datastore' interface. Choose one of any of the database's listed below to set up and initialize your database:
 
-Set up and configure AlloyDB
-Set up and configure Cloud SQL
-Deploying the Retrieval Service
-Instructions for deploying the retrieval service
+[Setting up your Database](docs/alloydb.md)
 
-Running the LLM-based Application
+## Deploying the Recommendation Service
+Instructions for deploying the Recommendation Service
+
+## Running the Recommendation Service
 Instructions for running app locally
 
-Clean up Resources
+## Clean up Resources
 Instructions for cleaning up resources
+
+# Writing your own Recommendation Service
+
 
 
 
