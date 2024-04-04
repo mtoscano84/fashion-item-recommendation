@@ -22,8 +22,9 @@ Deploying this demo consists of 3 steps:
 
 ## Before you begin
 Clone this repo to your local machine:
-
+```
 git clone https://github.com/GoogleCloudPlatform/genai-databases-retrieval-app.git
+```
 
 ## Setting up your Database
 The retrieval service uses an interchangeable 'datastore' interface. Choose one of any of the database's listed below to set up and initialize your database:
